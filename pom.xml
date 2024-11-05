@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version> <!-- Mettez à jour vers une version plus récente -->
+        <version>3.2.0</version> <!-- Version mise à jour -->
         <relativePath/>
     </parent>
     <groupId>tn.esprit.tp</groupId> <!-- Changez selon votre besoin -->
@@ -39,13 +39,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.8.2</version> <!-- Mise à jour vers une version plus récente -->
+            <version>5.9.3</version> <!-- Version mise à jour -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>4.0.0</version> <!-- Mise à jour vers une version plus récente -->
+            <version>5.5.0</version> <!-- Version mise à jour -->
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -55,7 +55,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.0.0</version> <!-- Mise à jour pour correspondre à la version parent -->
+                <version>3.2.0</version> <!-- Version mise à jour pour correspondre à la version parent -->
             </plugin>
         </plugins>
     </build>
