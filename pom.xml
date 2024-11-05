@@ -5,18 +5,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version> <!-- Version mise à jour -->
+        <version>3.3.4</version>
         <relativePath/>
     </parent>
-    <groupId>tn.esprit.tp</groupId> <!-- Changez selon votre besoin -->
-    <artifactId>tp-foyer</artifactId> <!-- Changez selon votre besoin -->
+    <groupId>tn.esprit</groupId>
+    <artifactId>tp-foyer</artifactId>
     <version>5.0.0</version>
     <name>tp-foyer</name>
-    <description>Project for managing foyer applications</description>
+    <description>tp-foyer</description>
     <properties>
-        <java.version>17</java.version> <!-- Assurez-vous que cette version est JDK 17 -->
+        <java.version>17</java.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -29,7 +28,12 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>8.0.33</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,40 +41,26 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.3</version> <!-- Version mise à jour -->
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.5.0</version> <!-- Version mise à jour -->
-            <scope>test</scope>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.2.0</version> <!-- Version mise à jour pour correspondre à la version parent -->
+                <version>3.3.4</version> <!-- Assurez-vous que cette version est correcte -->
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <!-- Configuration du référentiel Nexus -->
-    <repositories>
-        <repository>
-            <id>nexus3-repo</id>
-            <url>http://192.168.127.129:8081/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
