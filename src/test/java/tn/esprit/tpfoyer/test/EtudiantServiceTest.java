@@ -15,11 +15,10 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class EtudiantServiceTest {
+class EtudiantServiceTest {  // Peut-être rendre la classe package-private si nécessaire (pas public)
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -30,7 +29,7 @@ public class EtudiantServiceTest {
     private Etudiant etudiant;
 
     @BeforeEach
-    public void setup() {
+    void setup() {  // Peut-être rendre la méthode package-private si nécessaire (pas public)
         MockitoAnnotations.openMocks(this);
 
         // Initialize Etudiant and Reservations
@@ -55,7 +54,7 @@ public class EtudiantServiceTest {
     }
 
     @Test
-    public void testCalculateReservationsCount() {
+    void testCalculateReservationsCount() {  // Peut-être rendre la méthode package-private si nécessaire (pas public)
         // Mock the repository
         when(etudiantRepository.findById(1L)).thenReturn(Optional.of(etudiant));
 
