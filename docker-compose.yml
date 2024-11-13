@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    build: .
+    container_name: springboot-app
+    ports:
+      - "8089:8089"   # Mapper le port 8081 de l'hôte au port 8081 du container
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/mydatabase
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=rootpassword
+    volumes:
+      - .:/app  # Lier le code source local au conteneur (si vous développez en local)
+    depends_on:
+      - mysql-db  # Assurer que MySQL démarre avant Spring Boot
+    networks:
+      - springboot-network
+
+  mysql-db:
+    image: mysql:8.0  # Utiliser l'image officielle de MySQL
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"  # Mapper le port MySQL du container vers l'hôte (facultatif)
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+    driver: bridge
