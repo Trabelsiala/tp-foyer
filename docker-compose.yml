@@ -3,7 +3,7 @@ version: '3.8'
 services:
   springboot-app:
     build: .
-    container_name: eyayahmadigr7BIerp7
+    container_name: Eyayahmadigr7BIerp7
     ports:
       - "8089:8089"   # Mapper le port 8081 de l'hôte au port 8081 du container
     environment:
