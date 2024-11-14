@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  springboot-app:
-    build: .
+  spring_boot_app:
+    image: eyayh/eyayahmadigr7bierp7:latest
     container_name: eyayahmadigr7bierp7
     ports:
-      - "8089:8089"   # Mapper le port 8081 de l'hôte au port 8081 du container
+      - "8082:8082"   # Mapper le port 8081 de l'hôte au port 8081 du container
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/mydatabase
