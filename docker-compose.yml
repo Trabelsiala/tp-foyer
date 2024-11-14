@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  eyayahmadigr7bierp7:
-    build: .
+  spring_boot_app:
+    image: eyayh/eyayahmadigr7bierp7:latest
     container_name: eyayahmadigr7bierp7
     ports:
       - "8089:8089"   # Mapper le port 8081 de l'hôte au port 8081 du container
