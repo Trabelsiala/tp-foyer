@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -170,5 +171,21 @@ class BlocServiceImplTest {
         assertEquals(1, result.size());
         assertEquals("BlocA", result.get(0).getNomBloc());
         verify(blocRepository, times(1)).findAllByNomBlocAndCapaciteBloc("BlocA", 15);
+    }
+    @Test
+    void testFindBlocsByCapacityRangeAndSort() {
+        // Arrange
+        List<Bloc> blocs = Arrays.asList(
+                new Bloc(1L, "BlocA", 10, null, new HashSet<>()),
+                new Bloc(2L, "BlocB", 20, null, new HashSet<>())
+        );
+        when(blocRepository.findAllByCapaciteBlocBetween(10, 20, Sort.by("nomBloc").ascending())).thenReturn(blocs);
+
+        // Act
+        List<Bloc> result = blocService.findBlocsByCapacityRangeAndSort(10, 20, "nomBloc", true);
+
+        // Assert
+        assertEquals(2, result.size());
+        verify(blocRepository, times(1)).findAllByCapaciteBlocBetween(10, 20, Sort.by("nomBloc").ascending());
     }
 }

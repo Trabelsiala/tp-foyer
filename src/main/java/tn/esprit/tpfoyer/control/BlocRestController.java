@@ -1,6 +1,5 @@
 package tn.esprit.tpfoyer.control;
 
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -16,60 +15,50 @@ import java.util.List;
 @RequestMapping("/bloc")
 public class BlocRestController {
 
-    IBlocService blocService;
-
-
-    //http://localhost:8089/tpfoyer/bloc/retrieve-all-blocs
+    private final IBlocService blocService;
 
     @GetMapping("/retrieve-all-blocs")
-    @Operation(description = "WS de récuperation de tous les Blocs ")
+    @Operation(description = "WS de récupération de tous les Blocs")
     public List<Bloc> getBlocs() {
         return blocService.retrieveAllBlocs();
-        //return listBlocs;
     }
 
-
-    // http://localhost:8089/tpfoyer/bloc/retrieve-bloc/8
     @GetMapping("/retrieve-bloc/{bloc-id}")
     public Bloc retrieveBloc(@PathVariable("bloc-id") Long bId) {
-        Bloc bloc = blocService.retrieveBloc(bId);
-        return bloc;
-
+        return blocService.retrieveBloc(bId);
     }
 
-    // http://localhost:8089/tpfoyer/bloc/add-bloc
     @PostMapping("/add-bloc")
     public Bloc addBloc(@RequestBody Bloc c) {
-        Bloc bloc = blocService.addBloc(c);
-        return bloc;
+        return blocService.addBloc(c);
     }
 
-    // http://localhost:8089/tpfoyer/bloc/remove-bloc/{bloc-id}
     @DeleteMapping("/remove-bloc/{bloc-id}")
     public void removeBloc(@PathVariable("bloc-id") Long chId) {
         blocService.removeBloc(chId);
     }
 
-    // http://localhost:8089/tpfoyer/bloc/modify-bloc
     @PutMapping("/modify-bloc")
     public Bloc modifyBloc(@RequestBody Bloc c) {
-        Bloc bloc =blocService.modifyBloc(c);
-        return bloc;
+        return blocService.modifyBloc(c);
     }
 
     @GetMapping("/trouver-blocs-sans-foyer")
-    public List<Bloc> getBlocswirhoutFoyer() {
-        List<Bloc> listBlocs = blocService.trouverBlocsSansFoyer();
-        return listBlocs;
+    public List<Bloc> getBlocsSansFoyer() {
+        return blocService.trouverBlocsSansFoyer();
     }
 
     @GetMapping("/get-bloc-nb-c/{nb}/{c}")
-    public List<Bloc> recuperBlocsParNomEtCap(
-            @PathVariable("nb") String nb,
-            @PathVariable("c") long c) {
-
+    public List<Bloc> recuperBlocsParNomEtCap(@PathVariable("nb") String nb, @PathVariable("c") long c) {
         return blocService.trouverBlocsParNomEtCap(nb, c);
-
     }
 
+    @GetMapping("/find-blocs-by-capacity-range")
+    public List<Bloc> findBlocsByCapacityRangeAndSort(
+            @RequestParam long minCapacity,
+            @RequestParam long maxCapacity,
+            @RequestParam String sortBy,
+            @RequestParam boolean ascending) {
+        return blocService.findBlocsByCapacityRangeAndSort(minCapacity, maxCapacity, sortBy, ascending);
+    }
 }
